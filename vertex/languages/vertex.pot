@@ -1,0 +1,37 @@
+# Copyright (C) 2026 Vertex Studio
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Vertex 1.0.0\n"
+"Report-Msgid-Bugs-To: https://example.com/vertex\n"
+"POT-Creation-Date: 2026-01-01T00:00:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: Vertex\n"
+"X-Domain: vertex\n"
+
+#. Theme Name of the theme
+msgid "Vertex"
+msgstr ""
+
+#: header.php
+msgid "Skip to content"
+msgstr ""
+
+#: front-page.php template-parts/home/hero.php
+msgid "Start a Project"
+msgstr ""
+
+#: template-parts/home/hero.php
+msgid "View Our Work"
+msgstr ""
+
+#: inc/demo-import.php
+msgid "Import Demo Content"
+msgstr ""
+
+#: inc/demo-import.php
+msgid "Vertex Theme Setup"
+msgstr ""
