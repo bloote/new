@@ -1,0 +1,12 @@
+# Build artifacts
+*.zip
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Dependencies (if any tooling is added later)
+node_modules/
+vendor/
