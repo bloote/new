@@ -1,0 +1,55 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","metadata":{"name":"Work index"},"layout":{"type":"default"}} -->
+<main class="wp-block-group" id="nl-content">
+
+<!-- wp:pattern {"slug":"northline/hero-work"} /-->
+
+<!-- wp:group {"align":"full","className":"nl-rule","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|80"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull nl-rule" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--80)">
+<!-- wp:group {"className":"nl-filter-group","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
+<div class="wp-block-group nl-filter-group">
+
+<!-- wp:buttons {"className":"nl-rule-bottom","style":{"spacing":{"blockGap":"var:preset|spacing|20","padding":{"bottom":"var:preset|spacing|50"},"margin":{"bottom":"var:preset|spacing|70"}}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-buttons nl-rule-bottom" style="margin-bottom:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--50)">
+<!-- wp:button {"className":"is-style-secondary nl-filter nl-filter-key-all"} --><div class="wp-block-button is-style-secondary nl-filter nl-filter-key-all"><a class="wp-block-button__link wp-element-button" href="#">All work</a></div><!-- /wp:button -->
+<!-- wp:button {"className":"is-style-secondary nl-filter nl-filter-key-project_type-wordpress"} --><div class="wp-block-button is-style-secondary nl-filter nl-filter-key-project_type-wordpress"><a class="wp-block-button__link wp-element-button" href="#">WordPress</a></div><!-- /wp:button -->
+<!-- wp:button {"className":"is-style-secondary nl-filter nl-filter-key-project_type-headless"} --><div class="wp-block-button is-style-secondary nl-filter nl-filter-key-project_type-headless"><a class="wp-block-button__link wp-element-button" href="#">Headless</a></div><!-- /wp:button -->
+<!-- wp:button {"className":"is-style-secondary nl-filter nl-filter-key-project_type-commerce"} --><div class="wp-block-button is-style-secondary nl-filter nl-filter-key-project_type-commerce"><a class="wp-block-button__link wp-element-button" href="#">Commerce</a></div><!-- /wp:button -->
+<!-- wp:button {"className":"is-style-secondary nl-filter nl-filter-key-project_type-design"} --><div class="wp-block-button is-style-secondary nl-filter nl-filter-key-project_type-design"><a class="wp-block-button__link wp-element-button" href="#">Design only</a></div><!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+
+<!-- wp:query {"queryId":0,"query":{"perPage":24,"pages":0,"offset":0,"postType":"project","order":"asc","orderBy":"menu_order","inherit":true},"className":"nl-cards","layout":{"type":"default"}} -->
+<div class="wp-block-query nl-cards">
+<!-- wp:post-template {"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|80","left":"var:preset|spacing|60"}}},"layout":{"type":"grid","columnCount":3}} -->
+<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3","className":"nl-blueprint"} /-->
+<!-- wp:post-terms {"term":"project_type","className":"nl-meta","textColor":"accent-deep","style":{"spacing":{"margin":{"top":"var:preset|spacing|30","bottom":"0"}}}} /-->
+<!-- wp:post-title {"level":2,"isLink":true,"fontSize":"heading-4","style":{"spacing":{"margin":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}}} /-->
+<!-- wp:post-excerpt {"excerptLength":20,"showMoreOnNewLine":false,"fontSize":"small","className":"nl-quiet"} /-->
+<!-- /wp:post-template -->
+
+<!-- wp:query-pagination {"className":"nl-rule","style":{"spacing":{"padding":{"top":"var:preset|spacing|50"},"margin":{"top":"var:preset|spacing|80"}}},"layout":{"type":"flex","justifyContent":"space-between"}} -->
+<!-- wp:query-pagination-previous /--><!-- wp:query-pagination-numbers /--><!-- wp:query-pagination-next /-->
+<!-- /wp:query-pagination -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph {"className":"nl-quiet"} --><p class="nl-quiet">No projects here yet.</p><!-- /wp:paragraph -->
+<!-- /wp:query-no-results -->
+</div>
+<!-- /wp:query -->
+
+<!-- wp:paragraph {"className":"nl-filter-empty nl-quiet"} -->
+<p class="nl-filter-empty nl-quiet">Nothing in that category yet — try another filter.</p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:pattern {"slug":"northline/cta-work"} /-->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

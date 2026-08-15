@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "northline/form",
+	"title": "Northline form",
+	"category": "theme",
+	"icon": "feedback",
+	"description": "A working, self-hosted enquiry form. Posts to the site, validates server-side, emails the address in Settings, and needs no third-party service.",
+	"keywords": [ "form", "contact", "enquiry", "order", "newsletter" ],
+	"textdomain": "northline",
+	"attributes": {
+		"variant": {
+			"type": "string",
+			"default": "contact"
+		}
+	},
+	"supports": {
+		"html": false,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "northline-blocks",
+	"render": "file:../../inc/render-form.php"
+}

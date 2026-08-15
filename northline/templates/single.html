@@ -1,0 +1,77 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","metadata":{"name":"Post"},"layout":{"type":"default"}} -->
+<main class="wp-block-group" id="nl-content">
+
+<!-- wp:group {"align":"full","className":"nl-plate","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|80"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull nl-plate" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--80)">
+
+<!-- wp:paragraph {"className":"nl-meta","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|60"}}}} -->
+<p class="nl-meta" style="margin-bottom:var(--wp--preset--spacing--60)"><a href="/journal/">← Journal</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:post-terms {"term":"category","className":"nl-terms","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} /-->
+
+<!-- wp:post-title {"level":1,"className":"nl-measure-tight","fontSize":"display-xl"} /-->
+
+<!-- wp:post-excerpt {"excerptLength":40,"showMoreOnNewLine":false,"className":"nl-quiet nl-measure","fontSize":"x-large"} /-->
+
+<!-- wp:template-part {"slug":"post-meta","className":"nl-rule","style":{"spacing":{"padding":{"top":"var:preset|spacing|40"},"margin":{"top":"var:preset|spacing|50"}}}} /-->
+
+<!-- wp:post-featured-image {"aspectRatio":"21/9","className":"nl-blueprint","style":{"spacing":{"margin":{"top":"var:preset|spacing|70"}}}} /-->
+
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"full","className":"nl-rule","style":{"spacing":{"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull nl-rule" style="padding-top:var(--wp--preset--spacing--80);padding-bottom:var(--wp--preset--spacing--80)">
+<!-- wp:post-content {"className":"nl-article","layout":{"type":"constrained","contentSize":"720px"}} /-->
+
+<!-- wp:group {"className":"nl-rule nl-article-footer","style":{"spacing":{"padding":{"top":"var:preset|spacing|40"},"margin":{"top":"var:preset|spacing|70"},"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"}} -->
+<div class="wp-block-group nl-rule nl-article-footer" style="margin-top:var(--wp--preset--spacing--70);padding-top:var(--wp--preset--spacing--40)">
+<!-- wp:paragraph {"className":"nl-meta nl-fill"} --><p class="nl-meta nl-fill">Filed under</p><!-- /wp:paragraph -->
+<!-- wp:post-terms {"term":"post_tag","className":"nl-terms"} /-->
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:pattern {"slug":"northline/post-author"} /-->
+<!-- wp:pattern {"slug":"northline/post-related"} /-->
+
+<!-- wp:group {"align":"full","className":"nl-rule","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull nl-rule" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
+<!-- wp:comments {"className":"nl-comments"} -->
+<div class="wp-block-comments nl-comments">
+<!-- wp:comments-title {"level":2,"fontSize":"heading-3"} /-->
+<!-- wp:comment-template -->
+<!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|40"}}}} -->
+<div class="wp-block-columns">
+<!-- wp:column {"width":"60px"} -->
+<div class="wp-block-column" style="flex-basis:60px"><!-- wp:avatar {"size":56,"className":"nl-blueprint"} /--></div>
+<!-- /wp:column -->
+<!-- wp:column -->
+<div class="wp-block-column">
+<!-- wp:group {"className":"nl-meta","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-group nl-meta"><!-- wp:comment-author-name {"className":"nl-meta"} /--><!-- wp:comment-date {"className":"nl-meta"} /--></div>
+<!-- /wp:group -->
+<!-- wp:comment-content {"fontSize":"medium"} /-->
+<!-- wp:comment-reply-link {"className":"nl-meta"} /-->
+</div>
+<!-- /wp:column -->
+</div>
+<!-- /wp:columns -->
+<!-- /wp:comment-template -->
+<!-- wp:comments-pagination {"className":"nl-meta"} -->
+<!-- wp:comments-pagination-previous /--><!-- wp:comments-pagination-numbers /--><!-- wp:comments-pagination-next /-->
+<!-- /wp:comments-pagination -->
+<!-- wp:post-comments-form {"className":"nl-form"} /-->
+</div>
+<!-- /wp:comments -->
+</div>
+<!-- /wp:group -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

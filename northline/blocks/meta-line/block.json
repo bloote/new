@@ -1,0 +1,50 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "northline/meta-line",
+	"title": "Meta line",
+	"category": "theme",
+	"icon": "editor-ol",
+	"description": "A dot-separated line of custom fields from the current post — version, installs, requirements. Used on catalogue cards.",
+	"keywords": [ "meta", "version", "catalogue", "download" ],
+	"textdomain": "northline",
+	"usesContext": [ "postId", "postType" ],
+	"attributes": {
+		"fields": {
+			"type": "string",
+			"default": "nl_version,nl_installs,nl_requires"
+		},
+		"separator": {
+			"type": "string",
+			"default": " · "
+		},
+		"prefix": {
+			"type": "string",
+			"default": ""
+		},
+		"fallback": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"color": {
+			"text": true,
+			"background": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontFamily": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalTextTransform": true
+		}
+	},
+	"editorScript": "northline-blocks",
+	"render": "file:../../inc/render-meta-line.php"
+}

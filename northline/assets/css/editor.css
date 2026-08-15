@@ -1,0 +1,64 @@
+/*
+ * Editor-only corrections.
+ *
+ * style.css is loaded into the canvas as well, so the design already matches.
+ * These rules only fix the things that behave differently inside the editor:
+ * components that JavaScript would normally collapse, and the sticky header,
+ * which must not stick to the canvas.
+ */
+
+/* Nothing is scripted in the canvas, so every panel stays visible and legible. */
+.editor-styles-wrapper .nl-tab-panel,
+.editor-styles-wrapper .nl-accordion .nl-accordion-body {
+	display: block !important;
+	max-height: none !important;
+	opacity: 1 !important;
+	animation: none !important;
+}
+
+.editor-styles-wrapper .nl-reveal {
+	opacity: 1 !important;
+	transform: none !important;
+}
+
+.editor-styles-wrapper .nl-header {
+	position: static;
+	backdrop-filter: none;
+}
+
+/* Carousel slides sit side by side in the canvas so all three are editable. */
+.editor-styles-wrapper .nl-carousel-track {
+	display: grid;
+	grid-template-columns: repeat( 3, minmax( 0, 1fr ) );
+	gap: 1.5rem;
+	transform: none !important;
+}
+
+.editor-styles-wrapper .nl-carousel-track > * {
+	flex: initial;
+	padding-right: 0;
+}
+
+.editor-styles-wrapper .nl-carousel-window {
+	overflow: visible;
+}
+
+/* Both sides of the price switch are shown, labelled, rather than one hidden. */
+.editor-styles-wrapper .nl-switch-b {
+	display: inline;
+	opacity: 0.5;
+}
+
+.editor-styles-wrapper .nl-switch-b::before {
+	content: " / ";
+}
+
+/* The "nothing matches this filter" note is only meaningful on the front end. */
+.editor-styles-wrapper .nl-filter-empty {
+	opacity: 0.5;
+}
+
+/* Give the block inserter previews a light ground rather than the admin grey. */
+.block-editor-block-preview__content .nl-plate {
+	background-color: var( --wp--preset--color--base );
+}

@@ -1,0 +1,1410 @@
+/*
+Theme Name: Northline
+Theme URI: https://github.com/bloote/new
+Author: Northline Studio
+Author URI: https://northline.co
+Description: A full-site-editing block theme for web design and development studios that also publish themes, plugins and scripts. Blueprint art direction, 40+ section patterns, custom Projects and Downloads content types, and a one-click demo import that builds the complete site — pages, posts, categories, case studies, catalogue and menus.
+Requires at least: 6.5
+Tested up to: 6.8
+Requires PHP: 8.0
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: northline
+Tags: full-site-editing, block-patterns, blog, portfolio, business, one-column, two-columns, custom-colors, custom-logo, custom-menu, editor-style, featured-images, block-styles, wide-blocks, accessibility-ready, translation-ready
+*/
+
+/* -------------------------------------------------------------------------
+   Northline — component layer.
+
+   theme.json owns the tokens: colour, type, spacing, layout. This file owns
+   the handful of compositions that theme.json cannot express — the blueprint
+   frame, the numbered section rail, the interactive components — and nothing
+   else. Every value below resolves to a preset, so a rebrand in Styles still
+   carries the whole design.
+   ------------------------------------------------------------------------- */
+
+:root {
+	--nl-divider: color-mix( in srgb, var( --wp--preset--color--ink ) 16%, transparent );
+	--nl-quiet: color-mix( in srgb, var( --wp--preset--color--ink ) 62%, transparent );
+	--nl-quieter: color-mix( in srgb, var( --wp--preset--color--ink ) 50%, transparent );
+	--nl-grid: 68px;
+	--nl-rail: 200px;
+}
+
+/* On the dark call-to-action band, the quiet tones invert with the text. */
+.has-accent-dark-background-color,
+.nl-invert {
+	--nl-divider: color-mix( in srgb, var( --wp--preset--color--base ) 22%, transparent );
+	--nl-quiet: color-mix( in srgb, var( --wp--preset--color--base ) 72%, transparent );
+	--nl-quieter: color-mix( in srgb, var( --wp--preset--color--base ) 55%, transparent );
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	text-underline-offset: 3px;
+}
+
+::selection {
+	background: color-mix( in srgb, var( --wp--preset--color--accent ) 30%, transparent );
+}
+
+:focus-visible {
+	outline: 2px solid var( --wp--preset--color--accent );
+	outline-offset: 2px;
+}
+
+/* ----------------------------------------------------------- section rules */
+
+/* A hairline above a section, the way every band in the design is separated. */
+.nl-rule {
+	border-top: 1px solid var( --nl-divider );
+}
+
+.nl-rule-bottom {
+	border-bottom: 1px solid var( --nl-divider );
+}
+
+/* The faint engineering grid behind page headers. */
+.nl-plate {
+	background-image:
+		linear-gradient( to right, color-mix( in srgb, var( --wp--preset--color--ink ) 5%, transparent ) 1px, transparent 1px ),
+		linear-gradient( to bottom, color-mix( in srgb, var( --wp--preset--color--ink ) 5%, transparent ) 1px, transparent 1px );
+	background-size: var( --nl-grid ) var( --nl-grid );
+}
+
+/* --------------------------------------------------------- blueprint frame */
+
+.nl-blueprint {
+	position: relative;
+	border: 1px solid var( --nl-divider );
+	border-radius: 0;
+}
+
+.nl-blueprint::before {
+	--c: color-mix( in srgb, var( --wp--preset--color--ink ) 55%, transparent );
+	content: "";
+	position: absolute;
+	inset: -6px;
+	pointer-events: none;
+	background-repeat: no-repeat;
+	background-image:
+		linear-gradient( var( --c ), var( --c ) ), linear-gradient( var( --c ), var( --c ) ),
+		linear-gradient( var( --c ), var( --c ) ), linear-gradient( var( --c ), var( --c ) ),
+		linear-gradient( var( --c ), var( --c ) ), linear-gradient( var( --c ), var( --c ) ),
+		linear-gradient( var( --c ), var( --c ) ), linear-gradient( var( --c ), var( --c ) );
+	background-size: 1px 11px, 11px 1px, 1px 11px, 11px 1px, 1px 11px, 11px 1px, 1px 11px, 11px 1px;
+	background-position:
+		left 5px top 0, left 0 top 5px,
+		right 5px top 0, right 0 top 5px,
+		left 5px bottom 0, left 0 bottom 5px,
+		right 5px bottom 0, right 0 bottom 5px;
+}
+
+.nl-invert .nl-blueprint::before,
+.has-accent-dark-background-color .nl-blueprint::before {
+	--c: color-mix( in srgb, var( --wp--preset--color--base ) 55%, transparent );
+}
+
+/* A frame with no corner marks — used where boxes sit shoulder to shoulder. */
+.nl-hairline {
+	border: 1px solid var( --nl-divider );
+}
+
+/* ------------------------------------------------------------- typography  */
+
+.nl-kicker {
+	font-family: var( --wp--preset--font-family--heading );
+	font-weight: 600;
+	font-size: 0.75rem;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	line-height: 1.4;
+}
+
+.nl-meta {
+	font-family: var( --wp--preset--font-family--heading );
+	font-size: 0.75rem;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var( --nl-quieter );
+	line-height: 1.4;
+}
+
+.nl-quiet {
+	color: var( --nl-quiet );
+}
+
+/* Category and type links in a meta line read as labels, not as body links. */
+.nl-meta a,
+.wp-block-post-terms.nl-meta a,
+.wp-block-post-terms.nl-kicker a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* A stacked list of destinations reads as navigation, not as body links. */
+.nl-link-list a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.nl-link-list a:hover {
+	color: var( --wp--preset--color--accent );
+	text-decoration: underline;
+}
+
+.nl-meta a:hover,
+.wp-block-post-terms.nl-meta a:hover {
+	color: var( --wp--preset--color--accent );
+	text-decoration: underline;
+}
+
+.nl-quieter {
+	color: var( --nl-quieter );
+}
+
+.nl-numeral {
+	font-family: var( --wp--preset--font-family--heading );
+	line-height: 1;
+	letter-spacing: -0.02em;
+}
+
+.nl-mono {
+	font-family: var( --wp--preset--font-family--mono );
+	font-size: 0.78125rem;
+	background: var( --wp--preset--color--surface );
+	border: 1px solid var( --nl-divider );
+	padding: 0.75rem 0.9rem;
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
+/* The "01 —— Services" rail that opens each numbered band. */
+.nl-index {
+	display: flex;
+	align-items: baseline;
+	gap: 0.625rem;
+	font-family: var( --wp--preset--font-family--heading );
+	font-weight: 600;
+	font-size: 0.75rem;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var( --wp--preset--color--accent-deep );
+	white-space: nowrap;
+}
+
+.nl-index::after {
+	content: "";
+	display: block;
+	width: 22px;
+	height: 1px;
+	background: currentColor;
+	order: 1;
+}
+
+.nl-index > :last-child {
+	order: 2;
+}
+
+/* Brand mark: a square inside a square. */
+.nl-mark {
+	position: relative;
+	display: block;
+	width: 22px;
+	height: 22px;
+	flex: none;
+	border: 1px solid currentColor;
+}
+
+.nl-mark::after {
+	content: "";
+	position: absolute;
+	inset: 4px;
+	background: var( --wp--preset--color--accent );
+}
+
+/* ------------------------------------------------------------------- tags  */
+
+.nl-tag {
+	display: inline-flex;
+	align-items: center;
+	font-family: var( --wp--preset--font-family--body );
+	font-size: 0.6875rem;
+	letter-spacing: 0.02em;
+	line-height: 1.5;
+	padding: 3px 10px;
+	border-radius: 0;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.nl-tag-accent {
+	background: var( --wp--preset--color--accent-tint );
+	color: var( --wp--preset--color--accent-dark );
+}
+
+.nl-tag-neutral {
+	background: var( --wp--preset--color--surface );
+	color: var( --wp--preset--color--ink );
+}
+
+.nl-tag-outline {
+	border: 1px solid var( --wp--preset--color--accent );
+	color: var( --wp--preset--color--accent-deep );
+}
+
+.nl-invert .nl-tag-outline {
+	border-color: var( --wp--preset--color--base );
+	color: var( --wp--preset--color--base );
+}
+
+/* Post terms rendered as tags. */
+.nl-terms a {
+	display: inline-flex;
+	align-items: center;
+	padding: 3px 10px;
+	margin-right: 6px;
+	border: 1px solid var( --wp--preset--color--accent );
+	color: var( --wp--preset--color--accent-deep );
+	font-family: var( --wp--preset--font-family--body );
+	font-size: 0.6875rem;
+	letter-spacing: 0.02em;
+	text-transform: none;
+	text-decoration: none;
+}
+
+.nl-terms a:hover {
+	background: var( --wp--preset--color--accent-tint );
+}
+
+/* ---------------------------------------------------------------- buttons  */
+
+.wp-block-button__link {
+	transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.wp-block-button.is-style-secondary .wp-block-button__link {
+	background: transparent;
+	color: var( --wp--preset--color--ink );
+	border-color: var( --nl-divider );
+}
+
+.wp-block-button.is-style-secondary .wp-block-button__link:hover,
+.wp-block-button.is-style-secondary .wp-block-button__link:focus {
+	background: color-mix( in srgb, var( --wp--preset--color--ink ) 7%, transparent );
+	color: var( --wp--preset--color--ink );
+	border-color: var( --wp--preset--color--accent );
+}
+
+.nl-invert .wp-block-button.is-style-secondary .wp-block-button__link {
+	color: var( --wp--preset--color--base );
+	border-color: var( --nl-divider );
+}
+
+.nl-invert .wp-block-button.is-style-secondary .wp-block-button__link:hover {
+	background: color-mix( in srgb, var( --wp--preset--color--base ) 12%, transparent );
+	color: var( --wp--preset--color--base );
+}
+
+.wp-block-button.is-style-inverse .wp-block-button__link {
+	background: var( --wp--preset--color--base );
+	color: var( --wp--preset--color--accent-dark );
+	border-color: var( --wp--preset--color--base );
+}
+
+.wp-block-button.is-style-inverse .wp-block-button__link:hover,
+.wp-block-button.is-style-inverse .wp-block-button__link:focus {
+	background: var( --wp--preset--color--accent-tint );
+	color: var( --wp--preset--color--accent-dark );
+	border-color: var( --wp--preset--color--accent-tint );
+}
+
+.wp-block-button.is-style-link .wp-block-button__link {
+	background: transparent;
+	border-color: transparent;
+	color: var( --wp--preset--color--accent-deep );
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.wp-block-button.is-style-link .wp-block-button__link:hover {
+	background: transparent;
+	border-color: transparent;
+	color: var( --wp--preset--color--accent );
+	text-decoration: underline;
+}
+
+/* --------------------------------------------------------------- the header */
+
+.nl-header {
+	position: sticky;
+	top: 0;
+	z-index: 50;
+	background: color-mix( in srgb, var( --wp--preset--color--base ) 90%, transparent );
+	backdrop-filter: blur( 10px );
+	border-bottom: 1px solid var( --nl-divider );
+}
+
+.admin-bar .nl-header {
+	top: 32px;
+}
+
+@media ( max-width: 782px ) {
+	.admin-bar .nl-header {
+		top: 46px;
+	}
+}
+
+.nl-header .wp-block-navigation .wp-block-navigation-item__content:hover {
+	color: var( --wp--preset--color--accent );
+}
+
+.nl-header .wp-block-navigation .current-menu-item > .wp-block-navigation-item__content,
+.nl-header .wp-block-navigation .current-menu-ancestor > .wp-block-navigation-item__content {
+	color: var( --wp--preset--color--accent-deep );
+}
+
+.wp-block-navigation .wp-block-navigation__submenu-container {
+	border: 1px solid var( --nl-divider );
+	background: var( --wp--preset--color--base );
+	padding: 8px 0;
+	min-width: 260px;
+}
+
+.wp-block-navigation .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+	padding: 9px 20px;
+	font-family: var( --wp--preset--font-family--body );
+	font-size: 0.9375rem;
+	font-weight: 400;
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+/* --------------------------------------------------------------- the footer */
+
+.nl-footer a {
+	color: var( --wp--preset--color--ink );
+	text-decoration: none;
+}
+
+.nl-footer a:hover {
+	color: var( --wp--preset--color--accent );
+	text-decoration: underline;
+}
+
+/* ------------------------------------------------------------------ tables */
+
+.wp-block-table table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.wp-block-table th {
+	text-align: left;
+	font-family: var( --wp--preset--font-family--heading );
+	font-weight: 600;
+	font-size: 0.6875rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var( --nl-quieter );
+	padding: 0.5rem 0.6rem;
+	border: 0;
+	border-bottom: 1px solid var( --nl-divider );
+}
+
+.wp-block-table td {
+	padding: 0.55rem 0.6rem;
+	border: 0;
+	border-bottom: 1px solid color-mix( in srgb, var( --wp--preset--color--ink ) 8%, transparent );
+}
+
+.wp-block-table tbody tr:hover {
+	background: color-mix( in srgb, var( --wp--preset--color--ink ) 4%, transparent );
+}
+
+/* ------------------------------------------------------------------ images */
+
+.wp-block-image img {
+	display: block;
+	width: 100%;
+}
+
+.nl-blueprint.wp-block-image {
+	overflow: visible;
+}
+
+figcaption {
+	font-family: var( --wp--preset--font-family--heading );
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------- query loops */
+
+.wp-block-post-template.is-layout-grid {
+	gap: var( --wp--preset--spacing--60 );
+}
+
+.nl-cards .wp-block-post {
+	display: flex;
+	flex-direction: column;
+	gap: 0.9rem;
+}
+
+.nl-cards .wp-block-post-featured-image {
+	margin: 0;
+}
+
+.nl-cards .wp-block-post-featured-image img {
+	width: 100%;
+}
+
+.nl-cards .wp-block-post-title {
+	margin: 0;
+}
+
+.nl-cards .wp-block-post-excerpt {
+	margin: 0;
+}
+
+.nl-cards .wp-block-post-excerpt__excerpt {
+	color: var( --nl-quiet );
+	font-size: 0.875rem;
+}
+
+.nl-cards .wp-block-post-excerpt__more-text {
+	display: none;
+}
+
+/* A boxed card: hairline frame with corner marks, padded body, image bleeding
+   to the edges. */
+.nl-cards-boxed .wp-block-post {
+	position: relative;
+	border: 1px solid var( --nl-divider );
+	gap: 0;
+}
+
+.nl-cards-boxed .wp-block-post::before {
+	--c: color-mix( in srgb, var( --wp--preset--color--ink ) 55%, transparent );
+	content: "";
+	position: absolute;
+	inset: -6px;
+	pointer-events: none;
+	z-index: 1;
+	background-repeat: no-repeat;
+	background-image:
+		linear-gradient( var( --c ), var( --c ) ), linear-gradient( var( --c ), var( --c ) ),
+		linear-gradient( var( --c ), var( --c ) ), linear-gradient( var( --c ), var( --c ) ),
+		linear-gradient( var( --c ), var( --c ) ), linear-gradient( var( --c ), var( --c ) ),
+		linear-gradient( var( --c ), var( --c ) ), linear-gradient( var( --c ), var( --c ) );
+	background-size: 1px 11px, 11px 1px, 1px 11px, 11px 1px, 1px 11px, 11px 1px, 1px 11px, 11px 1px;
+	background-position:
+		left 5px top 0, left 0 top 5px,
+		right 5px top 0, right 0 top 5px,
+		left 5px bottom 0, left 0 bottom 5px,
+		right 5px bottom 0, right 0 bottom 5px;
+}
+
+.nl-cards-boxed .wp-block-post > :not( .wp-block-post-featured-image ) {
+	margin-left: 1.4rem;
+	margin-right: 1.4rem;
+}
+
+.nl-cards-boxed .wp-block-post > :not( .wp-block-post-featured-image ):first-child {
+	margin-top: 1.4rem;
+}
+
+.nl-cards-boxed .wp-block-post > :last-child {
+	margin-bottom: 1.4rem;
+}
+
+.nl-cards-boxed .wp-block-post-featured-image {
+	border-bottom: 1px solid var( --nl-divider );
+	margin-bottom: 1.2rem;
+}
+
+.wp-block-query-pagination {
+	font-family: var( --wp--preset--font-family--heading );
+	font-size: 0.8125rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.wp-block-query-pagination .page-numbers {
+	padding: 0.4rem 0.7rem;
+	border: 1px solid transparent;
+	text-decoration: none;
+}
+
+.wp-block-query-pagination .page-numbers:hover {
+	border-color: var( --nl-divider );
+}
+
+.wp-block-query-pagination .page-numbers.current {
+	border-color: var( --wp--preset--color--accent );
+	color: var( --wp--preset--color--accent-deep );
+}
+
+/* --------------------------------------------------------- divided columns */
+
+/* Four figures side by side, separated by hairlines — the stats band. */
+.nl-divided {
+	border-top: 1px solid var( --nl-divider );
+}
+
+.nl-divided > .wp-block-column + .wp-block-column,
+.nl-divided > .wp-block-group + .wp-block-group {
+	border-left: 1px solid var( --nl-divider );
+	padding-left: var( --wp--preset--spacing--50 );
+}
+
+.nl-divided > .wp-block-column,
+.nl-divided > .wp-block-group {
+	padding-right: var( --wp--preset--spacing--50 );
+	padding-top: var( --wp--preset--spacing--40 );
+}
+
+@media ( max-width: 781px ) {
+	.nl-divided > .wp-block-column + .wp-block-column,
+	.nl-divided > .wp-block-group + .wp-block-group {
+		border-left: 0;
+		border-top: 1px solid var( --nl-divider );
+		padding-left: 0;
+	}
+}
+
+/* A stacked list of rows separated by hairlines — timelines, changelogs. */
+.nl-rows > * {
+	border-bottom: 1px solid var( --nl-divider );
+	padding-bottom: var( --wp--preset--spacing--40 );
+	margin-bottom: var( --wp--preset--spacing--40 );
+}
+
+.nl-rows > :first-child {
+	border-top: 1px solid var( --nl-divider );
+	padding-top: var( --wp--preset--spacing--40 );
+}
+
+/* ------------------------------------------------------------------- tabs  */
+
+.nl-tabs .nl-tab-btn {
+	cursor: pointer;
+	justify-content: flex-start;
+	text-align: left;
+	transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.nl-js .nl-tabs .nl-tab-panel[hidden] {
+	display: none;
+}
+
+.nl-tab-panel {
+	animation: nl-fade 0.45s ease both;
+}
+
+@keyframes nl-fade {
+	from {
+		opacity: 0;
+		transform: translateY( 8px );
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+/* -------------------------------------------------------------- accordion  */
+
+.nl-accordion .nl-accordion-head {
+	cursor: pointer;
+	position: relative;
+	list-style: none;
+}
+
+.nl-accordion .nl-accordion-head::-webkit-details-marker {
+	display: none;
+}
+
+.nl-accordion .nl-accordion-mark {
+	font-family: var( --wp--preset--font-family--heading );
+	color: var( --nl-quieter );
+	transition: transform 0.35s ease, color 0.35s ease;
+	display: inline-block;
+	line-height: 1;
+}
+
+.nl-accordion.is-open .nl-accordion-mark {
+	transform: rotate( 45deg );
+	color: var( --wp--preset--color--accent );
+}
+
+.nl-js .nl-accordion .nl-accordion-body {
+	overflow: hidden;
+	transition: max-height 0.45s cubic-bezier( 0.2, 0.7, 0.2, 1 ), opacity 0.35s ease;
+}
+
+.nl-js .nl-accordion:not( .is-open ) .nl-accordion-body {
+	max-height: 0;
+	opacity: 0;
+}
+
+/* ---------------------------------------------------------------- filters  */
+
+.nl-filter {
+	cursor: pointer;
+	transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.nl-filter[aria-pressed="true"] .wp-block-button__link,
+.nl-filter.is-active .wp-block-button__link {
+	background: var( --wp--preset--color--accent );
+	color: var( --wp--preset--color--base );
+	border-color: var( --wp--preset--color--accent );
+}
+
+.nl-filter-hidden {
+	display: none !important;
+}
+
+/* --------------------------------------------------------------- carousel  */
+
+.nl-carousel-window {
+	overflow: hidden;
+}
+
+.nl-carousel-track {
+	display: flex;
+	transition: transform 0.55s cubic-bezier( 0.2, 0.7, 0.2, 1 );
+}
+
+.nl-carousel-track > * {
+	flex: 0 0 100%;
+	margin: 0;
+	padding-right: 3rem;
+}
+
+.nl-carousel-dot {
+	width: 26px;
+	height: 4px;
+	display: block;
+	padding: 0;
+	border: 0;
+	cursor: pointer;
+	background: var( --wp--preset--color--divider );
+}
+
+.nl-carousel-dot[aria-selected="true"] {
+	background: var( --wp--preset--color--accent );
+}
+
+.nl-carousel-prev,
+.nl-carousel-next {
+	width: 36px;
+	height: 36px;
+	display: inline-grid;
+	place-items: center;
+	background: transparent;
+	border: 1px solid var( --nl-divider );
+	color: inherit;
+	cursor: pointer;
+	font-size: 0.9rem;
+}
+
+.nl-carousel-prev:hover,
+.nl-carousel-next:hover {
+	background: color-mix( in srgb, var( --wp--preset--color--ink ) 7%, transparent );
+}
+
+/* ------------------------------------------------------- price switch/choice */
+
+.nl-switch-b,
+.nl-js .nl-choice-view:not( .is-active ) {
+	display: none;
+}
+
+.nl-js .nl-switch.is-b .nl-switch-a {
+	display: none;
+}
+
+.nl-js .nl-switch.is-b .nl-switch-b {
+	display: inline;
+}
+
+.nl-choice-opt {
+	display: flex;
+	justify-content: space-between;
+	gap: 0.75rem;
+	width: 100%;
+	text-align: left;
+	font: inherit;
+	font-size: 0.875rem;
+	padding: 0.75rem 0.9rem;
+	border: 1px solid var( --nl-divider );
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+	transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.nl-choice-opt[aria-pressed="true"] {
+	border-color: var( --wp--preset--color--accent );
+	background: var( --wp--preset--color--accent-tint );
+}
+
+/* --------------------------------------------------------- reveal on scroll */
+
+.nl-js .nl-reveal {
+	opacity: 0;
+	transform: translateY( 18px );
+	transition: opacity 0.75s cubic-bezier( 0.2, 0.7, 0.2, 1 ), transform 0.75s cubic-bezier( 0.2, 0.7, 0.2, 1 );
+}
+
+.nl-js .nl-reveal.is-in {
+	opacity: 1;
+	transform: none;
+}
+
+.nl-delay-1 {
+	transition-delay: 80ms;
+}
+
+.nl-delay-2 {
+	transition-delay: 160ms;
+}
+
+.nl-delay-3 {
+	transition-delay: 240ms;
+}
+
+@media ( prefers-reduced-motion: reduce ) {
+	.nl-js .nl-reveal,
+	.nl-tab-panel,
+	.nl-carousel-track,
+	.nl-js .nl-accordion .nl-accordion-body {
+		transition: none !important;
+		animation: none !important;
+		opacity: 1 !important;
+		transform: none !important;
+	}
+}
+
+/* ------------------------------------------------------------------- forms */
+
+.nl-field label,
+.nl-form label {
+	display: block;
+	font-size: 0.75rem;
+	margin-bottom: 5px;
+	color: color-mix( in srgb, var( --wp--preset--color--ink ) 70%, transparent );
+}
+
+.nl-input,
+.nl-form input[type="text"],
+.nl-form input[type="email"],
+.nl-form input[type="url"],
+.nl-form input[type="search"],
+.nl-form input[type="tel"],
+.nl-form textarea,
+.nl-form select {
+	width: 100%;
+	min-height: 40px;
+	padding: 8px 11px;
+	font: inherit;
+	font-size: 0.875rem;
+	color: var( --wp--preset--color--ink );
+	caret-color: var( --wp--preset--color--accent );
+	background: var( --wp--preset--color--surface );
+	border: 1px solid var( --nl-divider );
+	border-radius: 0;
+}
+
+.nl-form textarea {
+	min-height: 120px;
+	resize: vertical;
+}
+
+.nl-form input:hover,
+.nl-form textarea:hover {
+	border-color: color-mix( in srgb, var( --wp--preset--color--ink ) 45%, transparent );
+}
+
+.nl-form input:focus-visible,
+.nl-form textarea:focus-visible {
+	border-color: var( --wp--preset--color--accent );
+	outline-offset: 0;
+}
+
+.nl-form fieldset {
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+
+.nl-form legend {
+	padding: 0;
+	font-size: 0.75rem;
+	margin-bottom: 0.4rem;
+	color: color-mix( in srgb, var( --wp--preset--color--ink ) 70%, transparent );
+}
+
+.nl-choice-row {
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+.nl-choice-row label {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 7px 12px;
+	font-size: 0.875rem;
+	border: 1px solid var( --nl-divider );
+	cursor: pointer;
+	margin: 0;
+	color: inherit;
+}
+
+.nl-choice-row label:has( input:checked ) {
+	background: var( --wp--preset--color--accent );
+	border-color: var( --wp--preset--color--accent );
+	color: var( --wp--preset--color--base );
+}
+
+.nl-choice-row input {
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.nl-radio-row {
+	display: flex;
+	gap: 1.4rem;
+	flex-wrap: wrap;
+}
+
+.nl-radio-row label {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 0.875rem;
+	cursor: pointer;
+	margin: 0;
+	color: inherit;
+}
+
+.nl-form button[type="submit"] {
+	font-family: var( --wp--preset--font-family--heading );
+	font-weight: 600;
+	font-size: 0.875rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	padding: 0.85rem 1.75rem;
+	border: 1px solid var( --wp--preset--color--accent );
+	background: var( --wp--preset--color--accent );
+	color: var( --wp--preset--color--base );
+	cursor: pointer;
+}
+
+.nl-form button[type="submit"]:hover {
+	background: var( --wp--preset--color--accent-deep );
+	border-color: var( --wp--preset--color--accent-deep );
+}
+
+.nl-form-note {
+	font-size: 0.8125rem;
+	color: var( --nl-quieter );
+}
+
+.nl-form-message {
+	border: 1px solid var( --wp--preset--color--accent );
+	background: var( --wp--preset--color--accent-tint );
+	color: var( --wp--preset--color--accent-dark );
+	padding: 0.9rem 1.1rem;
+	margin-bottom: 1.25rem;
+	font-size: 0.9375rem;
+}
+
+.nl-form-message.is-error {
+	border-color: #a4443a;
+	background: #f7e9e7;
+	color: #6d2b24;
+}
+
+.nl-honeypot {
+	position: absolute;
+	left: -9999px;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+/* Core search block, dressed as one of our inputs. */
+.wp-block-search__input {
+	border: 1px solid var( --nl-divider );
+	border-radius: 0;
+	background: var( --wp--preset--color--surface );
+	padding: 8px 11px;
+	font-size: 0.9375rem;
+}
+
+.wp-block-search__button {
+	border-radius: 0;
+	border: 1px solid var( --wp--preset--color--accent );
+	background: var( --wp--preset--color--accent );
+	color: var( --wp--preset--color--base );
+	font-family: var( --wp--preset--font-family--heading );
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	padding: 0.55rem 1.1rem;
+}
+
+/* -------------------------------------------------------------- utilities  */
+
+.nl-sticky {
+	position: sticky;
+	top: 100px;
+}
+
+.nl-flush {
+	margin-block: 0 !important;
+}
+
+.nl-fill {
+	flex: 1;
+}
+
+.nl-nowrap {
+	white-space: nowrap;
+}
+
+.nl-measure {
+	max-width: 62ch;
+}
+
+/* A constrained layout centres any child narrower than the content width, and
+   core sets those auto margins with !important. Measured text is set to a
+   width for readability rather than to be centred, so it has to say so just as
+   loudly to keep the left edge of the column it sits in. */
+.is-layout-constrained > .nl-measure,
+.is-layout-constrained > .nl-measure-tight,
+.is-layout-constrained > .nl-measure-head,
+.is-layout-constrained > .nl-measure-hero,
+.is-layout-constrained > .nl-rail-layout,
+.is-layout-constrained > .nl-listing-row,
+.is-layout-constrained > .nl-tutorial-row {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+.nl-measure-tight {
+	max-width: 22ch;
+}
+
+/* A section heading sits over about twenty-six characters, so the button
+   beside it has somewhere to go. */
+.nl-measure-head {
+	max-width: 26ch;
+}
+
+/* A page headline is set tighter still. */
+.nl-measure-hero {
+	max-width: 18ch;
+}
+
+.nl-screen-reader-text {
+	border: 0;
+	clip-path: inset( 50% );
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+.skip-link {
+	position: absolute;
+	left: -9999px;
+	top: 0;
+	z-index: 100000;
+	background: var( --wp--preset--color--accent-dark );
+	color: var( --wp--preset--color--base );
+	padding: 0.75rem 1.25rem;
+	text-decoration: none;
+}
+
+.skip-link:focus {
+	left: 6px;
+	top: 6px;
+}
+
+/* The narrow rail used beside a wide column on section headers. */
+@media ( min-width: 782px ) {
+	.nl-rail-layout {
+		display: grid;
+		grid-template-columns: var( --nl-rail ) 1fr;
+		gap: var( --wp--preset--spacing--70 );
+		align-items: start;
+	}
+
+	.nl-rail-layout.is-bottom {
+		align-items: end;
+	}
+}
+
+/* Below the fold on small screens, wide type needs to calm down. */
+@media ( max-width: 781px ) {
+	.nl-sticky {
+		position: static;
+	}
+
+	.nl-carousel-track > * {
+		padding-right: 0;
+	}
+
+	.nl-mono {
+		font-size: 0.7rem;
+	}
+}
+
+/* -------------------------------------------------------------------------
+   Component layer, part two — the pieces the patterns introduced.
+   ------------------------------------------------------------------------- */
+
+/* Kicker with the small accent square in front of it. */
+.nl-kicker.has-dot::before {
+	content: "";
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	margin-right: 12px;
+	background: var( --wp--preset--color--accent );
+	vertical-align: baseline;
+}
+
+/* The selected tab, painted through the button block. */
+.nl-tab-btn.is-active .wp-block-button__link,
+.wp-block-button__link.is-selected-tab {
+	background: var( --wp--preset--color--accent );
+	border-color: var( --wp--preset--color--accent );
+	color: var( --wp--preset--color--base );
+}
+
+.nl-tab-list .wp-block-button {
+	width: 100%;
+}
+
+.nl-tab-list .wp-block-button__link {
+	width: 100%;
+	justify-content: flex-start;
+	text-align: left;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+/* Vertical button stacks fill their column. */
+.wp-block-buttons.is-vertical .wp-block-button,
+.wp-block-buttons.is-vertical .wp-block-button__link {
+	width: 100%;
+}
+
+/* Read-more links dressed as buttons, for use inside query loops. */
+.wp-block-read-more.nl-as-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.7rem 1.4rem;
+	border: 1px solid var( --wp--preset--color--accent );
+	background: var( --wp--preset--color--accent );
+	color: var( --wp--preset--color--base );
+	font-family: var( --wp--preset--font-family--heading );
+	font-size: 0.8125rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	line-height: 1.2;
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.wp-block-read-more.nl-as-button:hover {
+	background: var( --wp--preset--color--accent-deep );
+	border-color: var( --wp--preset--color--accent-deep );
+	color: var( --wp--preset--color--base );
+}
+
+.wp-block-read-more.nl-as-button.is-secondary {
+	background: transparent;
+	border-color: var( --nl-divider );
+	color: var( --wp--preset--color--ink );
+}
+
+.wp-block-read-more.nl-as-button.is-secondary:hover {
+	background: color-mix( in srgb, var( --wp--preset--color--ink ) 7%, transparent );
+	border-color: var( --wp--preset--color--accent );
+	color: var( --wp--preset--color--ink );
+}
+
+/* Catalogue listing rows: mark, body, version line, actions. */
+.nl-listing-row {
+	display: grid;
+	grid-template-columns: 64px 1fr 190px 200px;
+	gap: var( --wp--preset--spacing--50 );
+	align-items: center;
+}
+
+.nl-listing-mark {
+	width: 64px;
+	height: 64px;
+	display: grid;
+	place-items: center;
+	font-family: var( --wp--preset--font-family--heading );
+	font-size: 1.375rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	color: var( --wp--preset--color--accent-deep );
+}
+
+@media ( max-width: 1024px ) {
+	.nl-listing-row {
+		grid-template-columns: 64px 1fr;
+	}
+
+	.nl-listing-row > :nth-child( 3 ),
+	.nl-listing-row > :nth-child( 4 ) {
+		grid-column: 2;
+		justify-content: flex-start;
+	}
+}
+
+@media ( max-width: 600px ) {
+	.nl-listing-row {
+		grid-template-columns: 1fr;
+	}
+
+	.nl-listing-row > :nth-child( 3 ),
+	.nl-listing-row > :nth-child( 4 ) {
+		grid-column: 1;
+	}
+}
+
+/* Tutorial rows: title, level, length, link. */
+.nl-tutorial-row {
+	display: grid;
+	grid-template-columns: 1fr 150px 110px 130px;
+	gap: var( --wp--preset--spacing--50 );
+	align-items: center;
+}
+
+@media ( max-width: 900px ) {
+	.nl-tutorial-row {
+		grid-template-columns: 1fr auto;
+	}
+}
+
+@media ( max-width: 600px ) {
+	.nl-tutorial-row {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* A two-column grid whose cells are separated by hairlines. */
+.nl-divided-grid {
+	border-top: 1px solid var( --nl-divider );
+}
+
+.nl-divided-grid > * {
+	border-bottom: 1px solid var( --nl-divider );
+}
+
+@media ( min-width: 782px ) {
+	.nl-divided-grid > :nth-child( even ) {
+		border-left: 1px solid var( --nl-divider );
+		padding-left: var( --wp--preset--spacing--70 );
+	}
+
+	.nl-divided-grid > :nth-child( odd ) {
+		padding-right: var( --wp--preset--spacing--70 );
+	}
+}
+
+/* Form layout. */
+.nl-form {
+	display: flex;
+	flex-direction: column;
+	gap: var( --wp--preset--spacing--50 );
+}
+
+.nl-form-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var( --wp--preset--spacing--40 );
+}
+
+@media ( max-width: 600px ) {
+	.nl-form-row {
+		grid-template-columns: 1fr;
+	}
+}
+
+.nl-form-actions {
+	display: flex;
+	align-items: center;
+	gap: var( --wp--preset--spacing--50 );
+	flex-wrap: wrap;
+	border-top: 1px solid var( --nl-divider );
+	padding-top: var( --wp--preset--spacing--50 );
+}
+
+.nl-form.is-inline {
+	flex-direction: row;
+	align-items: flex-start;
+	gap: var( --wp--preset--spacing--20 );
+}
+
+.nl-form.is-inline .nl-field {
+	flex: 1;
+}
+
+.nl-form.is-inline .nl-form-actions {
+	border-top: 0;
+	padding-top: 0;
+}
+
+.nl-form-errors {
+	margin: 0;
+	padding-left: 1.1rem;
+}
+
+/* Article body: the reading measure and the rhythm inside a post. */
+.nl-article > * {
+	margin-block: var( --wp--preset--spacing--40 );
+}
+
+.nl-article > h2 {
+	margin-top: var( --wp--preset--spacing--70 );
+}
+
+.nl-article > h3 {
+	margin-top: var( --wp--preset--spacing--60 );
+}
+
+.nl-article p {
+	font-size: 1.0625rem;
+	line-height: 1.68;
+}
+
+.nl-article > .wp-block-pullquote,
+.nl-article > .wp-block-quote {
+	margin-block: var( --wp--preset--spacing--70 );
+}
+
+.nl-article .wp-block-pullquote {
+	border-top: 1px solid var( --nl-divider );
+	border-bottom: 1px solid var( --nl-divider );
+	padding: var( --wp--preset--spacing--60 ) 0;
+}
+
+/* Comments. */
+.nl-comments .wp-block-comment-content p {
+	font-size: 0.9375rem;
+}
+
+.nl-comments .wp-block-post-comments-form input[type="text"],
+.nl-comments .wp-block-post-comments-form input[type="email"],
+.nl-comments .wp-block-post-comments-form input[type="url"],
+.nl-comments .wp-block-post-comments-form textarea {
+	border-radius: 0;
+	border: 1px solid var( --nl-divider );
+	background: var( --wp--preset--color--surface );
+}
+
+/* The specification list on a catalogue page. */
+.nl-spec-list .wp-block-group {
+	border-bottom: 1px solid color-mix( in srgb, var( --wp--preset--color--ink ) 8%, transparent );
+	padding-bottom: var( --wp--preset--spacing--30 );
+}
+
+.nl-spec-list .wp-block-group:last-child {
+	border-bottom: 0;
+	padding-bottom: 0;
+}
+
+/* Header navigation collapses to the overlay well before the button crowds it. */
+@media ( max-width: 1100px ) {
+	.nl-header-cta {
+		display: none;
+	}
+}
+
+
+
+/* -------------------------------------------------------------------------
+   Responsive grids.
+
+   A grid layout with a column count keeps that count at every width, so the
+   theme collapses them itself: four or three columns become two on a tablet
+   and one on a phone. Core writes the column count into a container class of
+   the same specificity, so these have to be marked important to win.
+   ------------------------------------------------------------------------- */
+
+@media ( max-width: 1024px ) {
+	.wp-block-group.is-layout-grid,
+	.wp-block-post-template.is-layout-grid {
+		grid-template-columns: repeat( 2, minmax( 0, 1fr ) ) !important;
+	}
+}
+
+@media ( max-width: 640px ) {
+	.wp-block-group.is-layout-grid,
+	.wp-block-post-template.is-layout-grid {
+		grid-template-columns: minmax( 0, 1fr ) !important;
+	}
+}
+
+/* Once the figures band stacks, the hairlines run above each row rather than
+   between columns. */
+@media ( max-width: 1024px ) {
+	.nl-divided > * {
+		border-left: 0 !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		border-top: 1px solid var( --nl-divider );
+		padding-top: var( --wp--preset--spacing--40 );
+	}
+
+	.nl-divided {
+		border-top: 0;
+	}
+
+	.nl-divided-grid > :nth-child( even ) {
+		border-left: 0;
+		padding-left: 0;
+	}
+
+	.nl-divided-grid > :nth-child( odd ) {
+		padding-right: 0;
+	}
+}
+
+/* The section rail sits above its heading once the two columns stack. */
+@media ( max-width: 781px ) {
+	.nl-rail-layout > .nl-index {
+		margin-bottom: var( --wp--preset--spacing--40 );
+	}
+
+	.nl-tabs .nl-tab-list {
+		flex-direction: row;
+		flex-wrap: wrap;
+		margin-bottom: var( --wp--preset--spacing--50 );
+	}
+
+	.nl-tabs .nl-tab-list .wp-block-button {
+		width: auto;
+	}
+}

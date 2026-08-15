@@ -1,0 +1,82 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","metadata":{"name":"Downloads"},"layout":{"type":"default"}} -->
+<main class="wp-block-group" id="nl-content">
+
+<!-- wp:group {"align":"full","className":"nl-plate","style":{"spacing":{"padding":{"top":"var:preset|spacing|90","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull nl-plate" style="padding-top:var(--wp--preset--spacing--90);padding-bottom:var(--wp--preset--spacing--70)">
+<!-- wp:paragraph {"className":"nl-kicker has-dot","textColor":"accent-deep"} -->
+<p class="nl-kicker has-dot has-accent-deep-color has-text-color">Downloads</p>
+<!-- /wp:paragraph -->
+<!-- wp:query-title {"type":"archive","showPrefix":false,"className":"nl-measure-tight","fontSize":"display-xl"} /-->
+<!-- wp:term-description {"className":"nl-quiet nl-measure","fontSize":"x-large"} /-->
+<!-- wp:paragraph {"className":"nl-quiet nl-measure","fontSize":"x-large"} -->
+<p class="nl-quiet nl-measure has-x-large-font-size">Themes, plugins, scripts and browser tools. Everything here shipped on a real project first.</p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"full","className":"nl-rule","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|80"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull nl-rule" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--80)">
+<!-- wp:group {"className":"nl-filter-group","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
+<div class="wp-block-group nl-filter-group">
+
+<!-- wp:buttons {"className":"nl-rule-bottom","style":{"spacing":{"blockGap":"var:preset|spacing|20","padding":{"bottom":"var:preset|spacing|50"},"margin":{"bottom":"var:preset|spacing|70"}}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-buttons nl-rule-bottom" style="margin-bottom:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--50)">
+<!-- wp:button {"className":"is-style-secondary nl-filter nl-filter-key-all"} --><div class="wp-block-button is-style-secondary nl-filter nl-filter-key-all"><a class="wp-block-button__link wp-element-button" href="#">Everything</a></div><!-- /wp:button -->
+<!-- wp:button {"className":"is-style-secondary nl-filter nl-filter-key-download_type-themes"} --><div class="wp-block-button is-style-secondary nl-filter nl-filter-key-download_type-themes"><a class="wp-block-button__link wp-element-button" href="#">Themes</a></div><!-- /wp:button -->
+<!-- wp:button {"className":"is-style-secondary nl-filter nl-filter-key-download_type-plugins"} --><div class="wp-block-button is-style-secondary nl-filter nl-filter-key-download_type-plugins"><a class="wp-block-button__link wp-element-button" href="#">Plugins</a></div><!-- /wp:button -->
+<!-- wp:button {"className":"is-style-secondary nl-filter nl-filter-key-download_type-scripts"} --><div class="wp-block-button is-style-secondary nl-filter nl-filter-key-download_type-scripts"><a class="wp-block-button__link wp-element-button" href="#">Scripts</a></div><!-- /wp:button -->
+<!-- wp:button {"className":"is-style-secondary nl-filter nl-filter-key-download_type-tools"} --><div class="wp-block-button is-style-secondary nl-filter nl-filter-key-download_type-tools"><a class="wp-block-button__link wp-element-button" href="#">Tools</a></div><!-- /wp:button -->
+<!-- wp:button {"className":"is-style-secondary nl-filter nl-filter-key-download_tag-free"} --><div class="wp-block-button is-style-secondary nl-filter nl-filter-key-download_tag-free"><a class="wp-block-button__link wp-element-button" href="#">Free</a></div><!-- /wp:button -->
+<!-- wp:button {"className":"is-style-secondary nl-filter nl-filter-key-download_tag-pro"} --><div class="wp-block-button is-style-secondary nl-filter nl-filter-key-download_tag-pro"><a class="wp-block-button__link wp-element-button" href="#">Pro</a></div><!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+
+<!-- wp:query {"queryId":0,"query":{"perPage":40,"pages":0,"offset":0,"postType":"download","order":"asc","orderBy":"menu_order","inherit":true},"className":"nl-cards","layout":{"type":"default"}} -->
+<div class="wp-block-query nl-cards">
+<!-- wp:post-template {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
+<!-- wp:group {"className":"nl-listing-row nl-rule-bottom","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"default"}} -->
+<div class="wp-block-group nl-listing-row nl-rule-bottom" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
+<!-- wp:northline/meta-line {"fields":"nl_mark","className":"nl-listing-mark nl-blueprint","separator":"","fallback":"··"} /-->
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"default"}} -->
+<div class="wp-block-group">
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"}} -->
+<div class="wp-block-group">
+<!-- wp:post-title {"level":2,"isLink":true,"fontSize":"heading-4","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} /-->
+<!-- wp:northline/meta-line {"fields":"nl_price","className":"nl-tag nl-tag-outline"} /-->
+</div>
+<!-- /wp:group -->
+<!-- wp:post-excerpt {"excerptLength":28,"showMoreOnNewLine":false,"fontSize":"medium","className":"nl-quiet nl-measure"} /-->
+</div>
+<!-- /wp:group -->
+<!-- wp:northline/meta-line {"fields":"nl_version,nl_installs","className":"nl-meta"} /-->
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"right"}} -->
+<div class="wp-block-group">
+<!-- wp:read-more {"content":"Get it","className":"nl-as-button"} /-->
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+<!-- /wp:post-template -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph {"className":"nl-quiet"} --><p class="nl-quiet">Nothing published in the catalogue yet.</p><!-- /wp:paragraph -->
+<!-- /wp:query-no-results -->
+</div>
+<!-- /wp:query -->
+
+<!-- wp:paragraph {"className":"nl-filter-empty nl-quiet"} -->
+<p class="nl-filter-empty nl-quiet">Nothing matches that filter yet.</p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:pattern {"slug":"northline/cta-themes"} /-->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
