@@ -52,20 +52,6 @@ function northline_block_style_css() {
 	$css = '
 	.wp-block-image.is-style-blueprint,
 	.wp-block-group.is-style-blueprint { position: relative; border: 1px solid var(--nl-divider); }
-	.wp-block-image.is-style-blueprint::before,
-	.wp-block-group.is-style-blueprint::before {
-		--c: color-mix(in srgb, var(--wp--preset--color--ink) 55%, transparent);
-		content: ""; position: absolute; inset: -6px; pointer-events: none; background-repeat: no-repeat;
-		background-image:
-			linear-gradient(var(--c),var(--c)),linear-gradient(var(--c),var(--c)),
-			linear-gradient(var(--c),var(--c)),linear-gradient(var(--c),var(--c)),
-			linear-gradient(var(--c),var(--c)),linear-gradient(var(--c),var(--c)),
-			linear-gradient(var(--c),var(--c)),linear-gradient(var(--c),var(--c));
-		background-size: 1px 11px, 11px 1px, 1px 11px, 11px 1px, 1px 11px, 11px 1px, 1px 11px, 11px 1px;
-		background-position:
-			left 5px top 0, left 0 top 5px, right 5px top 0, right 0 top 5px,
-			left 5px bottom 0, left 0 bottom 5px, right 5px bottom 0, right 0 bottom 5px;
-	}
 	.wp-block-list.is-style-plain { list-style: none; padding-left: 0; }
 	.wp-block-list.is-style-plain li { margin-bottom: 0.5rem; }
 	';
