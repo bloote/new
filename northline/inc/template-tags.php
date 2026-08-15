@@ -420,9 +420,12 @@ function northline_definition( $label, $value ) {
  * @param string $body    Block markup for the open state.
  * @param bool   $open    Whether it starts open.
  * @param string $index   Optional S/01 style index shown on the left.
+ * @param string $size    Font size preset for the question. A full-width band
+ *                        carries heading-3; in a sidebar, beside the page's own
+ *                        h2, drop to x-large so the two are not the same voice.
  * @return string
  */
-function northline_accordion_row( $heading, $body, $open = false, $index = '' ) {
+function northline_accordion_row( $heading, $body, $open = false, $index = '', $size = 'heading-3' ) {
 	$head_left = $index
 		? sprintf(
 			'<!-- wp:paragraph {"className":"nl-index","style":{"spacing":{"margin":{"bottom":"0"}}}} --><p class="nl-index" style="margin-bottom:0"><span>%s</span></p><!-- /wp:paragraph -->',
@@ -430,14 +433,17 @@ function northline_accordion_row( $heading, $body, $open = false, $index = '' ) 
 		)
 		: '';
 
+	// The "+" tracks the question rather than staying one fixed size.
+	$mark = 'heading-3' === $size ? '1.6rem' : '1.25rem';
+
 	return sprintf(
 		'<!-- wp:group {"className":"nl-accordion nl-rule%1$s","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"},"blockGap":"0"}},"layout":{"type":"default"}} -->
 <div class="wp-block-group nl-accordion nl-rule%1$s" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
 <!-- wp:group {"className":"nl-accordion-head","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
 <div class="wp-block-group nl-accordion-head">
 %2$s
-<!-- wp:heading {"level":3,"className":"nl-fill","fontSize":"heading-3","style":{"spacing":{"margin":{"bottom":"0"}}}} --><h3 class="wp-block-heading nl-fill has-heading-3-font-size" style="margin-bottom:0">%3$s</h3><!-- /wp:heading -->
-<!-- wp:paragraph {"className":"nl-accordion-mark","style":{"typography":{"fontSize":"1.6rem"},"spacing":{"margin":{"bottom":"0"}}}} --><p class="nl-accordion-mark" style="font-size:1.6rem;margin-bottom:0">+</p><!-- /wp:paragraph -->
+<!-- wp:heading {"level":3,"className":"nl-fill","fontSize":"%5$s","style":{"spacing":{"margin":{"bottom":"0"}}}} --><h3 class="wp-block-heading nl-fill has-%5$s-font-size" style="margin-bottom:0">%3$s</h3><!-- /wp:heading -->
+<!-- wp:paragraph {"className":"nl-accordion-mark","style":{"typography":{"fontSize":"%6$s"},"spacing":{"margin":{"bottom":"0"}}}} --><p class="nl-accordion-mark" style="font-size:%6$s;margin-bottom:0">+</p><!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->
 <!-- wp:group {"className":"nl-accordion-body","layout":{"type":"default"}} -->
@@ -448,7 +454,9 @@ function northline_accordion_row( $heading, $body, $open = false, $index = '' ) 
 		$open ? ' is-open' : '',
 		$head_left,
 		esc_html( $heading ),
-		$body
+		$body,
+		esc_attr( $size ),
+		esc_attr( $mark )
 	);
 }
 

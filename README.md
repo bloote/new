@@ -17,7 +17,7 @@ Install the theme, press one button, and you have the finished website.
 | **Theme** | `northline/` — a block theme, no build step, no dependencies |
 | **Templates** | 18, covering pages, posts, case studies, the catalogue, taxonomies, search and 404 |
 | **Template parts** | Header, footer, post meta |
-| **Patterns** | 67 section patterns, grouped into six inserter categories |
+| **Patterns** | 80: the 67 sections the demo site is built from, 9 general-purpose sections, and 4 whole-page layouts |
 | **Content types** | Projects (case studies) and Downloads (themes, plugins, scripts, tools) |
 | **Blocks** | Two of our own: a catalogue meta line and a working enquiry form |
 | **Fonts** | Barlow and Barlow Condensed, subset and bundled locally — no external requests |
@@ -108,6 +108,30 @@ So a page in the demo site and a page you build yourself from the inserter are t
 same thing. Delete a section, reorder it, or rewrite its copy — it is ordinary core
 blocks from the moment it lands.
 
+### Building a page that is not in the demo site
+
+The sections above carry the demo site's own words, which is useful for seeing how
+a band is meant to read and unhelpful when you want an empty one. So there are two
+more groups in the inserter:
+
+**Nine general-purpose sections**, written with placeholder copy and nothing
+page-specific in them — text beside an image, two columns of prose, three cards,
+a quotation, four figures, people, questions and answers, an enquiry form, and a
+plain call-to-action band.
+
+**Four whole pages**, under *Northline — whole pages*, which appear when you create
+a page and choose a layout to start from:
+
+| Pattern | What it opens with |
+| --- | --- |
+| Page — a single service | header, what it is, three parts, questions, closing band |
+| Page — a landing page | header with figures, the numbers, the explanation, a quote |
+| Page — about | header, the story in two columns, the people, a quote |
+| Page — contact | header, the working enquiry form beside your details, questions |
+
+Each one is assembled from the general-purpose sections, so anything you delete
+from a page can be inserted again on its own.
+
 ### Design tokens
 
 `theme.json` owns colour, type, spacing and layout. `style.css` owns only the
@@ -164,7 +188,7 @@ northline/                 the theme
 ├── blocks/                meta-line, form
 ├── templates/             18 block templates
 ├── parts/                 header, footer, post meta
-├── patterns/              67 section patterns
+├── patterns/              80 patterns: sections, and four whole pages
 └── assets/                fonts, images, css, js
 tools/
 ├── generate-images.mjs    renders every image in the theme

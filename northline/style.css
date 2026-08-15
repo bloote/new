@@ -3,11 +3,11 @@ Theme Name: Northline
 Theme URI: https://github.com/bloote/new
 Author: Northline Studio
 Author URI: https://northline.co
-Description: A full-site-editing block theme for web design and development studios that also publish themes, plugins and scripts. Blueprint art direction, 40+ section patterns, custom Projects and Downloads content types, and a one-click demo import that builds the complete site — pages, posts, categories, case studies, catalogue and menus.
+Description: A full-site-editing block theme for web design and development studios that also publish themes, plugins and scripts. Blueprint art direction, 80 block patterns, custom Projects and Downloads content types, and a one-click demo import that builds the complete site — pages, posts, categories, case studies, catalogue and menus.
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 8.0
-Version: 1.0.0
+Version: 1.1.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: northline
@@ -84,6 +84,38 @@ body {
 /* A frame with no corner marks — used where boxes sit shoulder to shoulder. */
 .nl-hairline {
 	border: 1px solid var( --nl-divider );
+}
+
+/* ------------------------------------------------------------- cards in a row
+
+   Grid children stretch to the height of their row, but the card inside one
+   does not, and its contents stack from the top — so three cards with five,
+   six and seven bullets put their buttons at three different heights.
+
+   Making the card a column instead lets two things line up: anything marked
+   .nl-fill takes the slack, and a trailing row of buttons is pushed to the
+   bottom edge. Cards that carry their own layout (a figures box is a grid) are
+   left alone. */
+
+.wp-block-post-template.is-layout-grid > .wp-block-post,
+.is-layout-grid > .wp-block-group.nl-blueprint:not( .is-layout-grid ):not( .is-layout-flex ),
+.wp-block-post-template.is-layout-grid > .wp-block-post > .wp-block-group.nl-blueprint:not( .is-layout-grid ):not( .is-layout-flex ) {
+	display: flex;
+	flex-direction: column;
+}
+
+/* The card fills the list item that the query loop wraps it in. */
+.wp-block-post-template.is-layout-grid > .wp-block-post > .wp-block-group.nl-blueprint {
+	flex: 1;
+}
+
+/* The last thing in a card is pushed down only when it is a row of actions —
+   a trailing paragraph should stay where the copy left it. */
+.wp-block-post-template.is-layout-grid > .wp-block-post > :last-child:has( .wp-block-button, .wp-block-read-more ),
+.is-layout-grid > .nl-blueprint > :last-child:has( .wp-block-button, .wp-block-read-more ),
+.wp-block-post-template.is-layout-grid > .wp-block-post > .nl-blueprint > :last-child:has( .wp-block-button, .wp-block-read-more ) {
+	margin-top: auto;
+	padding-top: var( --wp--preset--spacing--30 );
 }
 
 /* ------------------------------------------------------------- typography  */
@@ -846,11 +878,44 @@ figcaption {
 .nl-radio-row label {
 	display: inline-flex;
 	align-items: center;
-	gap: 8px;
+	gap: 10px;
 	font-size: 0.875rem;
 	cursor: pointer;
 	margin: 0;
 	color: inherit;
+}
+
+/* A budget band is a scale, so it stays a radio group rather than becoming
+   segmented buttons like .nl-choice-row above — the round mark is what tells
+   the reader only one of these can be chosen. Everything but that shape is
+   the theme's: its hairline, its accent, its focus ring. */
+.nl-radio-row input[type="radio"] {
+	appearance: none;
+	flex: none;
+	width: 16px;
+	height: 16px;
+	margin: 0;
+	padding: 0;
+	border: 1px solid var( --nl-quiet );
+	border-radius: 50%;
+	background: var( --wp--preset--color--base );
+	cursor: pointer;
+	transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.nl-radio-row label:hover input[type="radio"] {
+	border-color: var( --wp--preset--color--accent );
+}
+
+.nl-radio-row input[type="radio"]:checked {
+	border-color: var( --wp--preset--color--accent );
+	background: var( --wp--preset--color--accent );
+	box-shadow: inset 0 0 0 3px var( --wp--preset--color--base );
+}
+
+.nl-radio-row input[type="radio"]:focus-visible {
+	outline: 2px solid var( --wp--preset--color--accent );
+	outline-offset: 2px;
 }
 
 .nl-form button[type="submit"] {

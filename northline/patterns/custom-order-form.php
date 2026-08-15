@@ -17,7 +17,9 @@ $faqs = array(
 
 $rows = '';
 foreach ( $faqs as $index => $faq ) {
-	$rows .= northline_accordion_row( $faq[0], northline_para( $faq[1], 'nl-quiet', 'medium' ), 0 === $index );
+	// These sit in the sidebar, beside the section's own h2, so the questions
+	// are set a step down from the full-width FAQ bands elsewhere.
+	$rows .= northline_accordion_row( $faq[0], northline_para( $faq[1], 'nl-quiet', 'medium' ), 0 === $index, '', 'x-large' );
 }
 
 echo northline_section_open( array( 'name' => 'Order form' ) );

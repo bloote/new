@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'NORTHLINE_VERSION', '1.0.0' );
+define( 'NORTHLINE_VERSION', '1.1.0' );
 define( 'NORTHLINE_DIR', get_template_directory() );
 define( 'NORTHLINE_URI', get_template_directory_uri() );
 

@@ -175,6 +175,11 @@ function northline_register_meta() {
 		),
 	);
 
+	// A usage snippet is a line of code shown as text — "<div data-cue="fade-up">".
+	// sanitize_text_field() reads that as a tag and strips the whole value, so
+	// those keys get a sanitiser that keeps the brackets instead.
+	$code_meta = array( 'nl_usage' );
+
 	foreach ( $string_meta as $post_type => $keys ) {
 		foreach ( $keys as $key => $label ) {
 			register_post_meta(
@@ -186,7 +191,7 @@ function northline_register_meta() {
 					'single'            => true,
 					'default'           => '',
 					'show_in_rest'      => true,
-					'sanitize_callback' => 'sanitize_text_field',
+					'sanitize_callback' => in_array( $key, $code_meta, true ) ? 'northline_sanitize_code_meta' : 'sanitize_text_field',
 					'auth_callback'     => function () {
 						return current_user_can( 'edit_posts' );
 					},
@@ -194,6 +199,29 @@ function northline_register_meta() {
 			);
 		}
 	}
+}
+
+/**
+ * Sanitise a meta value that is displayed as code rather than rendered as
+ * markup, so angle brackets have to survive being saved.
+ *
+ * Everything that reads these values escapes them on output — the meta-line
+ * block runs esc_html() — so the value only needs to be a clean, single-line
+ * UTF-8 string with no control characters in it.
+ *
+ * @param mixed $value Raw meta value.
+ * @return string
+ */
+function northline_sanitize_code_meta( $value ) {
+	if ( ! is_scalar( $value ) ) {
+		return '';
+	}
+
+	$value = wp_check_invalid_utf8( (string) $value );
+	$value = preg_replace( '/[\r\n\t]+/', ' ', $value );
+	$value = preg_replace( '/[\x00-\x1F\x7F]/', '', $value );
+
+	return trim( (string) $value );
 }
 add_action( 'init', 'northline_register_meta' );
 
