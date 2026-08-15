@@ -1,0 +1,15 @@
+{
+	"name": "northline-theme-tools",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Build tooling for the Northline WordPress theme. Not shipped with the theme.",
+	"type": "module",
+	"scripts": {
+		"images": "node tools/generate-images.mjs",
+		"build": "./tools/build.sh"
+	},
+	"devDependencies": {
+		"playwright": "^1.49.0"
+	},
+	"license": "GPL-2.0-or-later"
+}

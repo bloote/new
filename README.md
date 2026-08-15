@@ -21,7 +21,7 @@ Install the theme, press one button, and you have the finished website.
 | **Content types** | Projects (case studies) and Downloads (themes, plugins, scripts, tools) |
 | **Blocks** | Two of our own: a catalogue meta line and a working enquiry form |
 | **Fonts** | Barlow and Barlow Condensed, subset and bundled locally — no external requests |
-| **Images** | 46, generated in the blueprint house style and shipped with the theme |
+| **Images** | 46, rendered from HTML by headless Chromium and shipped with the theme |
 | **Demo content** | 13 pages, 8 journal posts, 9 case studies, 29 catalogue entries, 4 categories, menus |
 
 Nothing here calls out to a third-party service. There is no page builder, no
@@ -63,12 +63,24 @@ Every image is drawn by a script rather than stored as an unexplained binary, so
 the art direction is editable and the results are reproducible:
 
 ```bash
-php tools/generate-images.php
+npm install                             # once, for Playwright
+node tools/generate-images.mjs          # all 46
+node tools/generate-images.mjs theme-   # only the files matching a fragment
 ```
 
-Each plate is drawn from a fixed seed, so re-running produces identical files and
-never churns the repository. Palettes, scenes and sizes are all at the top of that
-script.
+Each plate is laid out in HTML and CSS and screenshotted by headless Chromium at
+the exact size it is used. That is what puts real typography, gradients and
+shadows in reach: the catalogue screenshots are rendered websites, the portraits
+are drawn in SVG, and each journal cover is a diagram of the thing its article is
+about. Nothing is downloaded and nothing is licensed from a stock library, so the
+whole set ships under the theme's own licence.
+
+Palette, scenes and the list of plates are all in that one file. Change a scene
+and re-run with a name fragment to see it without rebuilding the set.
+
+When the theme is updated, re-running the demo import replaces changed images in
+the media library **in place**, keeping their attachment IDs — so featured images
+and page content are never left pointing at the old artwork.
 
 ---
 
@@ -155,7 +167,7 @@ northline/                 the theme
 ├── patterns/              67 section patterns
 └── assets/                fonts, images, css, js
 tools/
-├── generate-images.php    draws every image in the theme
+├── generate-images.mjs    renders every image in the theme
 └── build.sh               produces the installable zip
 ```
 
